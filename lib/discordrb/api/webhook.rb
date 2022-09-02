@@ -43,7 +43,7 @@ module Discordrb::API::Webhook
       :webhooks_wid,
       webhook_id,
       :post,
-      "#{Discordrb::API.api_base}/webhooks/#{webhook_id}/#{webhook_token}?wait=#{wait}&thread_id=#{thread_id}",
+      "#{Discordrb::API.api_base}/webhooks/#{webhook_id}/#{webhook_token}?wait=#{wait}#{wait ? '&' : '?'}thread_id=#{thread_id}",
       body,
       headers
     )
