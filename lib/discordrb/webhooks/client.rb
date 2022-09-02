@@ -119,7 +119,7 @@ module Discordrb::Webhooks
 
     def post_json(builder, components, wait, thread_id)
       data = builder.to_json_hash.merge({ components: components.to_a })
-      RestClient.post(@url + (wait ? '?wait=true' : '') + (thread_id ? (wait ? '&' : '?') + "thead_id=#{thread_id}" : ''), data.to_json, content_type: :json)
+      RestClient.post(@url + (wait ? '?wait=true' : '') + (thread_id ? (wait ? '&' : '?') + "thread_id=#{thread_id}" : ''), data.to_json, content_type: :json)
     end
 
     def post_multipart(builder, components, wait, thread_id)
