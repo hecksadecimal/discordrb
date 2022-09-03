@@ -39,8 +39,6 @@ module Discordrb::API::Webhook
 
     headers = { content_type: :json } unless file
     
-    puts "#{Discordrb::API.api_base}/webhooks/#{webhook_id}/#{webhook_token}?wait=#{wait}#{thread_id ? "&thread_id=#{thread_id}" : ''}"
-    
     Discordrb::API.request(
       :webhooks_wid,
       webhook_id,

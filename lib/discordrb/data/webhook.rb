@@ -37,6 +37,7 @@ module Discordrb
       @name = data['name']
       @id = data['id'].to_i
       @channel = bot.channel(data['channel_id'])
+      @thread_id = data['thread_id'].to_i
       @server = @channel.server
       @token = data['token']
       @avatar = data['avatar']
@@ -147,6 +148,8 @@ module Discordrb
 
       data = builder.to_json_hash.merge(params.compact)
       components ||= view
+
+      thread_id ||= @thread_id
 
       resp = API::Webhook.token_execute_webhook(@token, @id, wait, thread_id, data[:content], data[:username], data[:avatar_url], data[:tts], data[:file], data[:embeds], data[:allowed_mentions], nil, components.to_a)
 

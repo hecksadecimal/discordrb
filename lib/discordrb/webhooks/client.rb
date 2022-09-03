@@ -14,8 +14,9 @@ module Discordrb::Webhooks
     #   set.
     # @param token [String] The webhook's authorisation token. Will only be used
     #   if `url` is not set.
-    def initialize(url: nil, id: nil, token: nil)
+    def initialize(url: nil, id: nil, token: nil, thread_id: nil)
       @url = url || generate_url(id, token)
+      @thread_id = thread_id
     end
 
     # Executes the webhook this client points to with the given data.
@@ -48,6 +49,8 @@ module Discordrb::Webhooks
       yield(builder, view) if block_given?
 
       components ||= view
+
+      thread_id ||= @thread_id
 
       if builder.file
         post_multipart(builder, components, wait, thread_id)
